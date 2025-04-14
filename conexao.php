@@ -3,7 +3,7 @@ $host = "127.0.0.1";
 $usuario = "root";
 $senha = "";
 $banco = "gerenciador_tarefas"; 
-$port = "3312";
+$port = "3306";
 
 // Cria a conexão com o banco de dados
 $conn = new mysqli($host, $usuario, $senha, $banco, $port);

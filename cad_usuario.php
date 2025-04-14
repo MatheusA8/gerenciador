@@ -110,10 +110,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header>
         <h1>Cadastro de Usuário</h1>
         <nav>
-            <a href="index.html">Início</a>
+            <a href="index.php">Início</a>
             <a href="cad_usuario.php">Cadastro de Usuário</a>
             <a href="tarefa.php">Cadastro de Tarefa</a>
-            <a href="tarefas.html">Lista de Tarefas</a>
+            <a href="tarefas.php">Lista de Tarefas</a>
         </nav>
     </header>
 
