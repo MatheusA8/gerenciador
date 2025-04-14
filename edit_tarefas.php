@@ -33,12 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssssssi", $descricao, $setor, $data, $prioridade, $status, $id_usuario, $id_tarefa);
 
     if ($stmt->execute()) {
-        echo "Tarefa atualizada com sucesso!";
+        echo "<p style='text-align:center; color:green;'>Tarefa atualizada com sucesso!</p>";
     } else {
-        echo "Erro: " . $stmt->error;
+        echo "<p style='text-align:center; color:red;'>Erro: " . $stmt->error . "</p>";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +45,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Editar Tarefa</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #003366;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        form {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input, form select, form button {
+            padding: 12px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form input:focus, form select:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -63,11 +139,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="descricao" value="<?php echo $tarefa['descricao']; ?>" placeholder="Descrição da tarefa" required>
         <input type="text" name="setor" value="<?php echo $tarefa['setor']; ?>" placeholder="Setor" required>
         <input type="date" name="data" value="<?php echo $tarefa['data_cadastro']; ?>" required>
+
         <select name="prioridade" required>
             <option value="Baixa" <?php if ($tarefa['prioridade'] == 'Baixa') echo 'selected'; ?>>Baixa</option>
             <option value="Média" <?php if ($tarefa['prioridade'] == 'Média') echo 'selected'; ?>>Média</option>
             <option value="Alta" <?php if ($tarefa['prioridade'] == 'Alta') echo 'selected'; ?>>Alta</option>
         </select>
+
         <select name="status" required>
             <option value="A fazer" <?php if ($tarefa['status'] == 'A fazer') echo 'selected'; ?>>A fazer</option>
             <option value="Fazendo" <?php if ($tarefa['status'] == 'Fazendo') echo 'selected'; ?>>Fazendo</option>
